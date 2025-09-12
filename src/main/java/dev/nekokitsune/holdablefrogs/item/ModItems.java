@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import dev.nekokitsune.holdablefrogs.HoldableFrogs;
 import dev.nekokitsune.holdablefrogs.item.custom.FrogHolderItem;
 import dev.nekokitsune.holdablefrogs.item.custom.HandheldFrogItem;
+import net.minecraft.entity.passive.FrogVariant;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
@@ -18,21 +19,22 @@ public class ModItems {
 
     public static final Item HANDHELD_FROG = register(
             "handheld_frog",
-            new HandheldFrogItem(new Item.Settings().maxCount(1)));
+            new HandheldFrogItem(new Item.Settings().maxCount(1), FrogVariant.TEMPERATE)
+    );
 
     public static final Item HANDHELD_TEMPERATE_FROG = register(
             "handheld_temperate_frog",
-            new HandheldFrogItem(new Item.Settings().maxCount(1))
+            new HandheldFrogItem(new Item.Settings().maxCount(1), FrogVariant.TEMPERATE)
     );
 
     public static final Item HANDHELD_COLD_FROG = register(
             "handheld_cold_frog",
-            new HandheldFrogItem(new Item.Settings().maxCount(1))
+            new HandheldFrogItem(new Item.Settings().maxCount(1), FrogVariant.COLD)
     );
 
     public static final Item HANDHELD_WARM_FROG = register(
             "handheld_warm_frog",
-            new HandheldFrogItem(new Item.Settings().maxCount(1))
+            new HandheldFrogItem(new Item.Settings().maxCount(1), FrogVariant.WARM)
     );
 
     private static Item register(String name, Item item) {
