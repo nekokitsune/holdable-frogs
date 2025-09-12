@@ -11,6 +11,7 @@ import net.minecraft.entity.passive.FrogVariant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileUtil;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -28,6 +29,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class FrogTongueEntity extends ProjectileEntity {
@@ -36,15 +38,21 @@ public class FrogTongueEntity extends ProjectileEntity {
 
     private int ownerId = -1;
     private int life;
+
     private final FrogVariant frogVariant;
+    private final Map<FrogVariant, Item> variantFroglightMap = Map.ofEntries(
+            Map.entry(FrogVariant.TEMPERATE, Items.OCHRE_FROGLIGHT),
+            Map.entry(FrogVariant.COLD, Items.VERDANT_FROGLIGHT),
+            Map.entry(FrogVariant.WARM, Items.PEARLESCENT_FROGLIGHT)
+    );
 
     public FrogTongueEntity(EntityType<? extends ProjectileEntity> type, World world, FrogVariant variant) {
         super(type, world);
         this.frogVariant = variant;
     }
 
-    public FrogTongueEntity(EntityType<FrogTongueEntity> frogTongueEntityEntityType, World world) {
-        super(frogTongueEntityEntityType, world);
+    public FrogTongueEntity(EntityType<FrogTongueEntity> type, World world) {
+        super(type, world);
         this.frogVariant = FrogVariant.TEMPERATE;
     }
 
@@ -119,25 +127,13 @@ public class FrogTongueEntity extends ProjectileEntity {
                 BlockPos playerPos = owner.getBlockPos();
                 target.discard();
 
-                if (frogVariant == FrogVariant.TEMPERATE) {
-                    ItemStack froglight = new ItemStack(Items.OCHRE_FROGLIGHT);
-                    ItemEntity froglightEntity = new ItemEntity(world,
-                            playerPos.getX(), playerPos.getY(), playerPos.getZ(),
-                            froglight);
-                    world.spawnEntity(froglightEntity);
-                } else if (frogVariant == FrogVariant.COLD) {
-                    ItemStack froglight = new ItemStack(Items.VERDANT_FROGLIGHT);
-                    ItemEntity froglightEntity = new ItemEntity(world,
-                            playerPos.getX(), playerPos.getY(), playerPos.getZ(),
-                            froglight);
-                    world.spawnEntity(froglightEntity);
-                } else if (frogVariant == FrogVariant.WARM) {
-                    ItemStack froglight = new ItemStack(Items.PEARLESCENT_FROGLIGHT);
-                    ItemEntity froglightEntity = new ItemEntity(world,
-                            playerPos.getX(), playerPos.getY(), playerPos.getZ(),
-                            froglight);
-                    world.spawnEntity(froglightEntity);
-                }
+                ItemStack froglight = new ItemStack(variantFroglightMap.get(frogVariant));
+                ItemEntity froglightEntity = new ItemEntity(world,
+                        playerPos.getX(), playerPos.getY(), playerPos.getZ(),
+                        froglight
+                );
+
+                world.spawnEntity(froglightEntity);
             }
 
             player.getWorld().playSound(null, owner.getBlockPos(),

@@ -12,7 +12,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import dev.nekokitsune.holdablefrogs.entity.FrogTongueEntity;
 import dev.nekokitsune.holdablefrogs.entity.ModEntities;
-import org.jetbrains.annotations.NotNull;
 
 public class HandheldFrogItem extends Item {
     private final FrogVariant frogVariant;
@@ -32,7 +31,7 @@ public class HandheldFrogItem extends Item {
                     1.0f,
                     1.0f);
 
-            FrogTongueEntity tongue = getFrogTongueEntity(world);
+            FrogTongueEntity tongue = new FrogTongueEntity(ModEntities.FROG_TONGUE, world, frogVariant);
 
             tongue.setOwner(user);
             tongue.refreshPositionAndAngles(
@@ -50,20 +49,5 @@ public class HandheldFrogItem extends Item {
         }
 
         return TypedActionResult.success(user.getStackInHand(hand));
-    }
-
-    private @NotNull FrogTongueEntity getFrogTongueEntity(World world) {
-        FrogTongueEntity tongue;
-
-        if (frogVariant == FrogVariant.TEMPERATE) {
-            tongue = new FrogTongueEntity(ModEntities.FROG_TONGUE, world, FrogVariant.TEMPERATE);
-        } else if (frogVariant == FrogVariant.COLD) {
-            tongue = new FrogTongueEntity(ModEntities.FROG_TONGUE, world, FrogVariant.COLD);
-        } else if (frogVariant == FrogVariant.WARM) {
-            tongue = new FrogTongueEntity(ModEntities.FROG_TONGUE, world, FrogVariant.WARM);
-        } else {
-            tongue = new FrogTongueEntity(ModEntities.FROG_TONGUE, world, FrogVariant.TEMPERATE);
-        }
-        return tongue;
     }
 }
