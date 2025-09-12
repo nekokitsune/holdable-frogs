@@ -1,7 +1,7 @@
 # nekokitsune's Holdable Frogs
 This mod makes frogs holdable in Minecraft!
 
-Download it [here](https://modrinth.com/project/XOSn0Rtx)!
+[Check it out on Modrinth!](https://modrinth.com/project/XOSn0Rtx)
 
 # How exactly?
 
