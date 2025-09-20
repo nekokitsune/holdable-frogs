@@ -1,6 +1,8 @@
 # nekokitsune's Holdable Frogs
 This mod makes frogs holdable in Minecraft!
 
+[Check it out on Modrinth!](https://modrinth.com/project/XOSn0Rtx)
+
 # How exactly?
 
 First, you need to craft a Frog Holder.
@@ -33,8 +35,20 @@ You can pull mobs for any reason you wish.
 
 <img width="640" height="480" alt="A Handheld Frog being used to pull a pig." src="https://github.com/user-attachments/assets/eacb74a7-344a-4c4c-87ac-9de2e3b71e70" />
 
+# Can I use Handheld Frogs to get Froglights?
+
+Yes! Just aim your Handheld Frog at a Magma Cube, use it, and receive a froglight.
+
+<img width="640" height="480" alt="A Handheld Frog and some Magma Cubes." src="https://github.com/user-attachments/assets/06928bb8-468a-4590-8470-69bcf35829ad" />
+
+<img width="640" height="480" alt="A Handheld Frog and some Magma Cubes, with a froglight in the hotbar." src="https://github.com/user-attachments/assets/e58e59bc-a36d-4e6a-9c7f-256fffdd02b2" />
+
 # Can I hold any frog variant?
 
 Yes! You can hold all three currently existing frog variants.
 
 <img width="179" height="59" alt="All three variants of the Handheld Frog." src="https://github.com/user-attachments/assets/567a8028-2db9-4fc7-8c2b-ab05a38aa80b" />
+
+You can also obtain all three currently existing types of froglights by using each type of frog on Magma Cubes.
+
+<img width="579" height="80" alt="All Handheld Frog variants with all three froglights." src="https://github.com/user-attachments/assets/233e3d57-a841-4ff5-a869-94c65653ec8f" />
