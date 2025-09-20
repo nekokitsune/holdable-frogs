@@ -16,7 +16,7 @@
     "i  "
   ],
   "result": {
-    "item": "holdable-frogs:frog_holder"
-  },
-  "show_notification": true
+    "count": 1,
+    "id": "holdable-frogs:frog_holder"
+  }
 }

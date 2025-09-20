@@ -14,6 +14,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 
 public class FrogHolderItem extends Item {
+
     public FrogHolderItem(Settings settings) {
         super(settings);
     }
@@ -21,15 +22,15 @@ public class FrogHolderItem extends Item {
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
         World world = user.getWorld();
-        ItemStack handheld = new ItemStack(ModItems.HANDHELD_FROG);
+         ItemStack handheld = new ItemStack(ModItems.HANDHELD_FROG);
 
         if (!(entity instanceof FrogEntity frog)) return ActionResult.PASS;
 
-        if (frog.getVariant() == FrogVariant.TEMPERATE) {
+        if (frog.getVariant().matchesKey(FrogVariant.TEMPERATE)) {
             handheld = new ItemStack(ModItems.HANDHELD_TEMPERATE_FROG);
-        } else if (frog.getVariant() == FrogVariant.COLD) {
+        } else if (frog.getVariant().matchesKey(FrogVariant.COLD)) {
             handheld = new ItemStack(ModItems.HANDHELD_COLD_FROG);
-        } else if (frog.getVariant() == FrogVariant.WARM) {
+        } else if (frog.getVariant().matchesKey(FrogVariant.WARM)) {
             handheld = new ItemStack(ModItems.HANDHELD_WARM_FROG);
         }
 

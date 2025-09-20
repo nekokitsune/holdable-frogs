@@ -15,7 +15,7 @@ import dev.nekokitsune.holdablefrogs.util.FrogTongueUtil;
 
 public class FrogTongueRenderer extends EntityRenderer<FrogTongueEntity> {
     private static final float TONGUE_THICKNESS = 0.05f;
-    private static final Identifier TEXTURE = new Identifier("textures/entity/fishing_hook.png");
+    private static final Identifier TEXTURE = Identifier.of("textures/entity/fishing_hook.png");
 
     public FrogTongueRenderer(EntityRendererFactory.Context context) {
         super(context);
@@ -99,12 +99,12 @@ public class FrogTongueRenderer extends EntityRenderer<FrogTongueEntity> {
     }
 
     private static void addVertex(VertexConsumer buffer, MatrixStack.Entry entry, Vec3d pos, int light) {
-        buffer.vertex(entry.getPositionMatrix(), (float) pos.x, (float) pos.y, (float) pos.z)
+        buffer.vertex(entry, (float) pos.x, (float) pos.y, (float) pos.z)
                 .color(230, 20, 20, 255)
                 .light(light)
-                .normal(entry.getNormalMatrix(), 0, 1, 0)
-                .next();
+                .normal(0, 1, 0);
     }
+
 
     @Override
     public Identifier getTexture(FrogTongueEntity entity) {

@@ -18,6 +18,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.server.network.EntityTrackerEntry;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
@@ -39,14 +41,14 @@ public class FrogTongueEntity extends ProjectileEntity {
     private int ownerId = -1;
     private int life;
 
-    private final FrogVariant frogVariant;
-    private final Map<FrogVariant, Item> variantFroglightMap = Map.ofEntries(
+    private final RegistryKey<FrogVariant> frogVariant;
+    private static final Map<RegistryKey<FrogVariant>, Item> variantFroglightMap = Map.ofEntries(
             Map.entry(FrogVariant.TEMPERATE, Items.OCHRE_FROGLIGHT),
             Map.entry(FrogVariant.COLD, Items.VERDANT_FROGLIGHT),
             Map.entry(FrogVariant.WARM, Items.PEARLESCENT_FROGLIGHT)
     );
 
-    public FrogTongueEntity(EntityType<? extends ProjectileEntity> type, World world, FrogVariant variant) {
+    public FrogTongueEntity(EntityType<? extends ProjectileEntity> type, World world, RegistryKey<FrogVariant> variant) {
         super(type, world);
         this.frogVariant = variant;
     }
@@ -57,8 +59,8 @@ public class FrogTongueEntity extends ProjectileEntity {
     }
 
     @Override
-    protected void initDataTracker() {
-        this.dataTracker.startTracking(OWNER_ID, -1);
+    protected void initDataTracker(DataTracker.Builder builder) {
+        builder.add(OWNER_ID, -1);
     }
 
     @Override
@@ -154,9 +156,10 @@ public class FrogTongueEntity extends ProjectileEntity {
     }
 
     @Override
-    public Packet<ClientPlayPacketListener> createSpawnPacket() {
-        return new EntitySpawnS2CPacket(this);
+    public Packet<ClientPlayPacketListener> createSpawnPacket(EntityTrackerEntry entityTrackerEntry) {
+        return new EntitySpawnS2CPacket(this, entityTrackerEntry);
     }
+
 
     protected boolean canHitEntity(Entity entity) {
         return entity.isAlive() && !entity.isSpectator() && entity != this.getOwner();

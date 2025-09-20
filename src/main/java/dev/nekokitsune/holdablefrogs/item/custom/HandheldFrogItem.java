@@ -4,6 +4,7 @@ import net.minecraft.entity.passive.FrogVariant;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -14,9 +15,9 @@ import dev.nekokitsune.holdablefrogs.entity.FrogTongueEntity;
 import dev.nekokitsune.holdablefrogs.entity.ModEntities;
 
 public class HandheldFrogItem extends Item {
-    private final FrogVariant frogVariant;
+    private final RegistryKey<FrogVariant> frogVariant;
 
-    public HandheldFrogItem(Settings settings, FrogVariant variant) {
+    public HandheldFrogItem(Settings settings, RegistryKey<FrogVariant> variant) {
         super(settings);
         this.frogVariant = variant;
     }

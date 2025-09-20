@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "holdable-frogs:frog_holder"
-            ]
+            "items": "holdable-frogs:frog_holder"
           }
         ]
       },
@@ -22,14 +20,13 @@
   },
   "requirements": [
     [
-      "has_frog_holder",
-      "has_the_recipe"
+      "has_the_recipe",
+      "has_frog_holder"
     ]
   ],
   "rewards": {
     "recipes": [
       "holdable-frogs:frog_holder"
     ]
-  },
-  "sends_telemetry_event": false
+  }
 }

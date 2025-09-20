@@ -16,7 +16,7 @@ import net.minecraft.util.math.RotationAxis;
 
 public class HandheldTemperateFrogRenderer implements BuiltinItemRendererRegistry.DynamicItemRenderer {
     private FrogEntityModel<FrogEntity> frogModel;
-    private final Identifier frogTexture = new Identifier("minecraft", "textures/entity/frog/temperate_frog.png");
+    private final Identifier frogTexture = Identifier.of("minecraft", "textures/entity/frog/temperate_frog.png");
 
     @Override
     public void render(ItemStack stack,
@@ -75,7 +75,7 @@ public class HandheldTemperateFrogRenderer implements BuiltinItemRendererRegistr
         }
 
         VertexConsumer vc = vertexConsumers.getBuffer(RenderLayer.getEntityCutoutNoCull(frogTexture));
-        frogModel.render(matrices, vc, light, overlay, 1f, 1f, 1f, 1f);
+        frogModel.render(matrices, vc, light, overlay);
 
         matrices.pop();
     }
